@@ -56,4 +56,5 @@ Melakukan pemindaian pada range port tertentu.
 Melakukan pemindaian dan menampilkan jalur traceroute ke target.
 `nmap --traceroute target`
 
+## Menyembunyikan Identitas
 

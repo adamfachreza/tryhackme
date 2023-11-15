@@ -46,3 +46,10 @@ hanya menampilkan paket dengan RTT akumulasi lebih dari 0.1 detik `tcp.analysis.
 ## Berdasarkan Status Tautan
 menampilkan hanya paket yang merupakan jenis manajemen 802.11 untuk asosiasi `wlan.fc.type_subtype == 0x0008`
 
+## Berdasarkan Teks di URL
+ Menampilkan paket HTTP di mana URL permintaan mengandung kata "login"
+ `http.request.uri contains "login"`
+ Menampilkan respon HTTP dengan status 200 dan payload yang mengandung kata "success". `http.response.code == 200 and frame contains "success"`
+
+ ## Berdasarkan Port Range
+ Menampilkan paket TCP yang melibatkan salah satu dari port 80, 8080, atau 443.`tcp.port in {80 8080 443}`

@@ -24,7 +24,8 @@
 # wireless attack
 - `aircrack-ng` alat untuk menguji penetrasi jaringan nirkabel
 - `wireshark`  Analisis lalu lintas jaringan dan penganalisis protokol.
-- `reaver` Alat untuk mengeksploitasi kelemahan keamanan WPS pada router Wi-Fi.
+- `reaver | wifite | airgeddon` Alat untuk mengeksploitasi kelemahan keamanan WPS pada router Wi-Fi.
+
 
 - # forensics tools
 - - `autopsy`platform forensik digital terbuka

